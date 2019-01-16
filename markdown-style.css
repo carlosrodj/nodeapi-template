@@ -1,0 +1,15 @@
+body{
+  background-color: #FFF !important;
+}
+
+.vscode-dark{
+  color: rgb(30,30,30);
+}
+
+[class*="vscode-"].showEditorSelection .code-active-line:before {
+  border-left: 3px solid rgba(0, 0, 255, 1);
+}
+
+[class*="vscode-"].showEditorSelection .code-line:hover:before {
+  border-left: 3px solid rgba(255, 0, 0, 1);
+}

@@ -1,0 +1,58 @@
+cache:
+  key: "$CI_BUILD_REF_NAME node:latest"
+  paths:
+    - node_modules/
+
+stages:
+  - test
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: node:latest
+  when: always
+  before_script:
+    - npm i --silent
+  variables:
+    NODE_ENV: "production"
+  script:
+    - npm run build
+
+test:
+  stage: test
+  coverage: '/^Statements\s*:\s*([^%]+)%/'
+  image: node:latest
+  when: always
+  before_script:
+    - npm i --silent
+  after_script:
+    - mv coverage/ public/
+  variables:
+    NODE_ENV: "test"
+  script:
+    - npm run coverage
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+
+
+deploy_google:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  variables:
+    NODE_ENV: "production"
+  only:
+    - develop
+  script:
+    - echo $GOOGLE_PROJECT_ID
+    - echo $GOOGLE_APP_ENGINE_KEY
+    - echo $GOOGLE_APP_ENGINE_KEY > /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - gcloud config set project $GOOGLE_PROJECT_ID
+    - gcloud info
+    - gcloud --quiet app deploy
+  after_script:
+    - rm /tmp/$CI_PIPELINE_ID.json
+
