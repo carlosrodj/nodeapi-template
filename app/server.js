@@ -8,7 +8,6 @@ import yes from 'yes-https';
 
 import routes from './routes';
 import Constants from './config/constants';
-import NFEProcessorJob from './lib/job/nfe.processor.job';
 import authenticate from './middleware/authenticate';
 import MailServer from './lib/mailer/mailer.server';
 
@@ -44,7 +43,6 @@ app.use(authenticate);
 // Mount API routes
 app.use(Constants.apiPrefix, routes);
 if (!Constants.envs.test) {
-  NFEProcessorJob.init();
   MailServer.init();
   app.use(yes());
 }

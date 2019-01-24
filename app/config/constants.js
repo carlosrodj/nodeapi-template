@@ -52,19 +52,19 @@ const environmentConfigs = {
   development: {
     mongo: {
       port: 17469,
-      uri: process.env.MONGO_URI || 'mongodb://userbd:senhabd@ds127329.mlab.com:17469/bancodev',
+      uri: process.env.MONGO_URI || 'mongodb://admin:admin123@dbh74.mlab.com:27747/bancodev',
     },
   },
   test: {
     mongo: {
       port: 17469,
-      uri: process.env.MONGO_URI || 'mongodb://userbd:senhabd@ds127329.mlab.com:17469/bancotest',
+      uri: process.env.MONGO_URI || 'mongodb://admin:admin123@dbh74.mlab.com:27747/bancotest',
     },
   },
   production: {
     mongo: {
       port: 17469,
-      uri: process.env.MONGO_URI || 'mongodb://userbd:senhabd@ds127329.mlab.com:17469/bancoprod',
+      uri: process.env.MONGO_URI || 'mongodb://admin:admin123@dbh74.mlab.com:27747/bancoprod',
     },
   },
 };
