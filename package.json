@@ -4,7 +4,7 @@
   "description": "API do aplicativo XYZ",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && babel app -d build && npm run doc-build",
+    "build": "npm run clean && babel app -d build --copy-files && npm run doc-build",
     "clean": "rimraf build && mkdir build",
     "start": "npm run build && node build/index.js",
     "start-dev": "npm run doc && nodemon",

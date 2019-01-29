@@ -4,10 +4,10 @@ const transports = [];
 
 transports.push(nodemailer.createTransport({
   host: 'smtp.gmail.com',
-  from: 'jjohnys.teste@gmail.com',
+  from: 'emaildeenvio@gmail.com',
   auth: {
-    user: 'jjohnys.teste@gmail.com',
-    pass: 'paamasdfnafu123**sda1$$',
+    user: 'emaildeenvio@gmail.com',
+    pass: 'senhadoemail',
   },
 }));
 
